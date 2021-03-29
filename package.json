@@ -36,7 +36,7 @@
   },
   "prettier": "@putdotio/prettier-config",
   "name": "@accept-banano/client",
-  "author": "Altay Aydemir",
+  "author": "Lee Ingram",
   "devDependencies": {
     "@putdotio/prettier-config": "^1.0.0",
     "@size-limit/preset-small-lib": "^4.6.0",
