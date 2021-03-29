@@ -20,7 +20,7 @@
     "prebuild": "yarn clean",
     "build": "tsdx build && yarn build:umd && yarn build:example",
     "build:umd": "parcel build src/index.ts --global acceptBanano --no-cache -d umd --out-file index.js",
-    "build:example": "cp src/example/index.html example/index.html && replace-in-file ../index.ts https://unpkg.com/@accept-nano/client@2 example/index.html",
+    "build:example": "cp src/example/index.html example/index.html && replace-in-file ../index.ts https://unpkg.com/@accept-banano/client@2 example/index.html",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "yarn build",
@@ -35,7 +35,7 @@
     }
   },
   "prettier": "@putdotio/prettier-config",
-  "name": "@accept-nano/client",
+  "name": "@accept-banano/client",
   "author": "Altay Aydemir",
   "devDependencies": {
     "@putdotio/prettier-config": "^1.0.0",
