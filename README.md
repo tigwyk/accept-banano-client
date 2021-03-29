@@ -1,6 +1,6 @@
 # accept-banano-client
 
-[![Build Status](https://travis-ci.org/tigwyk/accept-banano-client.svg?branch=master)](https://travis-ci.org/tigwyk/accept-banano-client)
+[![Build Status](https://travis-ci.com/tigwyk/accept-banano-client.svg?branch=master)](https://travis-ci.com/tigwyk/accept-banano-client)
 [![Coverage Status](https://coveralls.io/repos/github/tigwyk/accept-banano-client/badge.svg?branch=master)](https://coveralls.io/github/tigwyk/accept-banano-client?branch=master)
 ![npm (scoped)](https://img.shields.io/npm/v/@accept-banano/client)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@accept-banano/client)
