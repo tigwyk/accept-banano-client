@@ -1,12 +1,12 @@
-import * as acceptNano from './index'
+import * as acceptBanano from './index'
 
-describe('acceptNano', () => {
+describe('acceptBanano', () => {
   it('exposes the snapshotted API', () => {
-    expect(acceptNano).toMatchInlineSnapshot(`
+    expect(acceptBanano).toMatchInlineSnapshot(`
       Object {
         "createSession": [Function],
-        "isAcceptNanoPayment": [Function],
-        "isVerifiedAcceptNanoPayment": [Function],
+        "isAcceptBananoPayment": [Function],
+        "isVerifiedAcceptBananoPayment": [Function],
       }
     `)
   })

@@ -1,13 +1,13 @@
 import { Server } from 'mock-socket'
 import { createWebSocket, createWebSocketURL } from './webSocket'
 import {
-  mockAcceptNanoPayment,
-  mockVerifiedAcceptNanoPayment,
+  mockAcceptBananoPayment,
+  mockVerifiedAcceptBananoPayment,
 } from './test-utils'
 
 const socketConfig = {
   baseURL: 'wss://localhost:8080',
-  paymentToken: mockAcceptNanoPayment.token,
+  paymentToken: mockAcceptBananoPayment.token,
 }
 
 describe('createWebSocket', () => {
@@ -48,26 +48,26 @@ describe('createWebSocket', () => {
   describe('after receiving a message', () => {
     it('emits `payment_updated` event for expected payloads', done => {
       mockServer.on('connection', server => {
-        server.send(JSON.stringify(mockAcceptNanoPayment))
+        server.send(JSON.stringify(mockAcceptBananoPayment))
         server.close()
       })
 
       const socket = createWebSocket(socketConfig.baseURL)
       socket.on('payment_updated', payment => {
-        expect(payment).toEqual(mockAcceptNanoPayment)
+        expect(payment).toEqual(mockAcceptBananoPayment)
         done()
       })
     })
 
     it('emits `payment_verified` event for verified payments', done => {
       mockServer.on('connection', server => {
-        server.send(JSON.stringify(mockVerifiedAcceptNanoPayment))
+        server.send(JSON.stringify(mockVerifiedAcceptBananoPayment))
         server.close()
       })
 
       const socket = createWebSocket(socketConfig.baseURL)
       socket.on('payment_verified', payment => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBananoPayment)
         done()
       })
     })

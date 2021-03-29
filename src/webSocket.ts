@@ -1,8 +1,8 @@
 import { EventEmitter } from '@byungi/event-emitter'
 import {
-  AcceptNanoPayment,
-  isAcceptNanoPayment,
-  isVerifiedAcceptNanoPayment,
+  AcceptBananoPayment,
+  isAcceptBananoPayment,
+  isVerifiedAcceptBananoPayment,
 } from './types'
 import { logger } from './logger'
 
@@ -11,19 +11,19 @@ export const createWebSocketURL = ({
   paymentToken,
 }: {
   baseURL: string
-  paymentToken: AcceptNanoPayment['token']
+  paymentToken: AcceptBananoPayment['token']
 }) => `${baseURL}?token=${paymentToken}`
 
-type AcceptNanoWebSocketEvents = {
+type AcceptBananoWebSocketEvents = {
   open: () => void
   close: () => void
   error: (error: unknown) => void
-  payment_updated: (payment: AcceptNanoPayment) => void
-  payment_verified: (payment: AcceptNanoPayment) => void
+  payment_updated: (payment: AcceptBananoPayment) => void
+  payment_verified: (payment: AcceptBananoPayment) => void
 }
 
 export const createWebSocket = (url: string) => {
-  const eventEmitter = new EventEmitter<AcceptNanoWebSocketEvents>()
+  const eventEmitter = new EventEmitter<AcceptBananoWebSocketEvents>()
   const websocket = new WebSocket(url)
 
   websocket.onopen = () => {
@@ -45,8 +45,8 @@ export const createWebSocket = (url: string) => {
     try {
       const payload = JSON.parse(event.data)
 
-      if (isAcceptNanoPayment(payload)) {
-        return isVerifiedAcceptNanoPayment(payload)
+      if (isAcceptBananoPayment(payload)) {
+        return isVerifiedAcceptBananoPayment(payload)
           ? eventEmitter.emit('payment_verified', payload)
           : eventEmitter.emit('payment_updated', payload)
       }
@@ -71,4 +71,4 @@ export const createWebSocket = (url: string) => {
   }
 }
 
-export type AcceptNanoWebSocket = ReturnType<typeof createWebSocket>
+export type AcceptBananoWebSocket = ReturnType<typeof createWebSocket>

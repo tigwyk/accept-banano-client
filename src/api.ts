@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {
-  AcceptNanoPayment,
-  AcceptNanoPaymentToken,
-  CreateAcceptNanoPaymentParams,
+  AcceptBananoPayment,
+  AcceptBananoPaymentToken,
+  CreateAcceptBananoPaymentParams,
 } from './types'
 
 export const createAPI = ({ baseURL }: { baseURL: string }) => {
@@ -16,18 +16,18 @@ export const createAPI = ({ baseURL }: { baseURL: string }) => {
       amount,
       currency,
       state,
-    }: CreateAcceptNanoPaymentParams) => {
+    }: CreateAcceptBananoPaymentParams) => {
       const form = new FormData()
 
       form.append('amount', amount)
       form.append('currency', currency)
       form.append('state', state || '')
 
-      return instance.post<AcceptNanoPayment>('/pay', form)
+      return instance.post<AcceptBananoPayment>('/pay', form)
     },
 
-    fetchPayment: ({ token }: { token: AcceptNanoPaymentToken }) => {
-      return instance.get<AcceptNanoPayment>('/verify', {
+    fetchPayment: ({ token }: { token: AcceptBananoPaymentToken }) => {
+      return instance.get<AcceptBananoPayment>('/verify', {
         params: {
           token,
         },
@@ -36,4 +36,4 @@ export const createAPI = ({ baseURL }: { baseURL: string }) => {
   }
 }
 
-export type AcceptNanoAPI = ReturnType<typeof createAPI>
+export type AcceptBananoAPI = ReturnType<typeof createAPI>

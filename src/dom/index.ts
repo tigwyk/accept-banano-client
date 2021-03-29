@@ -1,6 +1,6 @@
 import { el, setChildren, mount, unmount, setStyle } from 'redom'
 import { EventEmitter } from '@byungi/event-emitter'
-import { AcceptNanoPayment, PaymentError } from '../types'
+import { AcceptBananoPayment, PaymentError } from '../types'
 import { containerStyle, bodyStyle, contentStyle, colors } from './style'
 import { createHeader } from './elements/header'
 import { createStatusBar } from './elements/statusBar'
@@ -57,7 +57,7 @@ export const createDOM = () => {
       setChildren(container, [createLoadingScene()])
     },
 
-    renderPayment: (payment: AcceptNanoPayment) => {
+    renderPayment: (payment: AcceptBananoPayment) => {
       // @TODO: maybe create a new state machine for this?
       if (scene === 'payment') return
       scene = 'payment'

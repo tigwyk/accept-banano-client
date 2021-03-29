@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <script src="https://unpkg.com/@accept-nano/client@2"></script>
+  <script src="https://unpkg.com/@accept-banano/client@2"></script>
   <style>
     body {
       background: #f7f7f7;
@@ -79,7 +79,7 @@
 
       <label>Currency</label>
       <select name="currency">
-        <option value="NANO">NANO</option>
+        <option value="BANANO">BANANO</option>
         <option value="USD">USD</option>
       </select>
 
@@ -96,7 +96,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault()
 
-      const session = window.acceptNano.createSession({
+      const session = window.acceptBanano.createSession({
         apiHost: form.apiHost.value,
         debug: true
       })

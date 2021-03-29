@@ -1,8 +1,8 @@
 import { createPaymentService } from './paymentService'
-import { AcceptNanoAPI } from './api'
-import { createMockAPIResponse, mockAcceptNanoPayment } from './test-utils'
+import { AcceptBananoAPI } from './api'
+import { createMockAPIResponse, mockAcceptBananoPayment } from './test-utils'
 
-const mockAPI: AcceptNanoAPI = {
+const mockAPI: AcceptBananoAPI = {
   createPayment: jest.fn(async () => createMockAPIResponse()),
   fetchPayment: jest.fn(async () => createMockAPIResponse()),
 }
@@ -17,7 +17,7 @@ describe('paymentService', () => {
     it('creates a payment session through API and transitions to verification state', done => {
       mockFetchPayment.mockResolvedValueOnce(
         createMockAPIResponse({
-          ...mockAcceptNanoPayment,
+          ...mockAcceptBananoPayment,
           merchantNotified: true,
         }),
       )
@@ -80,7 +80,7 @@ describe('paymentService', () => {
           ) {
             mockFetchPayment.mockResolvedValueOnce(
               createMockAPIResponse({
-                ...mockAcceptNanoPayment,
+                ...mockAcceptBananoPayment,
                 merchantNotified: true,
               }),
             )
@@ -95,7 +95,7 @@ describe('paymentService', () => {
 
       paymentService.send({
         type: 'START_PAYMENT_VERIFICATION',
-        token: mockAcceptNanoPayment.token,
+        token: mockAcceptBananoPayment.token,
       })
     })
 
@@ -119,7 +119,7 @@ describe('paymentService', () => {
 
       paymentService.send({
         type: 'START_PAYMENT_VERIFICATION',
-        token: mockAcceptNanoPayment.token,
+        token: mockAcceptBananoPayment.token,
       })
     })
   })
@@ -150,7 +150,7 @@ describe('paymentService', () => {
   it('cancels ongoing flow if payment session is expired', done => {
     mockFetchPayment.mockResolvedValueOnce(
       createMockAPIResponse({
-        ...mockAcceptNanoPayment,
+        ...mockAcceptBananoPayment,
         remainingSeconds: 0,
       }),
     )

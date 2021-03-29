@@ -6,8 +6,8 @@ import { createPaymentSession } from './paymentSession'
 import * as webSocket from './webSocket'
 import {
   mockAPIHost,
-  mockAcceptNanoPayment,
-  mockVerifiedAcceptNanoPayment,
+  mockAcceptBananoPayment,
+  mockVerifiedAcceptBananoPayment,
   clearDOM,
 } from './test-utils'
 
@@ -18,7 +18,7 @@ describe('createPaymentSession', () => {
     debug: false,
   }
 
-  const { token, amount, currency } = mockAcceptNanoPayment
+  const { token, amount, currency } = mockAcceptBananoPayment
   const mock = new MockAdapter(axios)
 
   afterEach(() => {
@@ -36,16 +36,16 @@ describe('createPaymentSession', () => {
     it('dispatches success event once the payment is verified', done => {
       mock
         .onPost(`https://${mockAPIHost}/api/pay`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBananoPayment)
 
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockVerifiedAcceptNanoPayment)
+        .reply(200, mockVerifiedAcceptBananoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBananoPayment)
         done()
       })
 
@@ -63,12 +63,12 @@ describe('createPaymentSession', () => {
     it('dispatches success event once the payment is verified', done => {
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockVerifiedAcceptNanoPayment)
+        .reply(200, mockVerifiedAcceptBananoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBananoPayment)
         done()
       })
 
@@ -84,19 +84,19 @@ describe('createPaymentSession', () => {
       const wss = new Server('wss://localhost:8080')
       wss.on('connection', server => {
         setTimeout(() => {
-          server.send(JSON.stringify(mockVerifiedAcceptNanoPayment))
+          server.send(JSON.stringify(mockVerifiedAcceptBananoPayment))
           server.close()
         }, sessionConfig.pollInterval * 2)
       })
 
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBananoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 
       paymentSession.on('end', (_error, payment) => {
-        expect(payment).toEqual(mockVerifiedAcceptNanoPayment)
+        expect(payment).toEqual(mockVerifiedAcceptBananoPayment)
         done()
       })
 
@@ -106,7 +106,7 @@ describe('createPaymentSession', () => {
     it('dispatches cancel event if close button is clicked during the verification', done => {
       mock
         .onGet(`https://${mockAPIHost}/api/verify`)
-        .reply(200, mockAcceptNanoPayment)
+        .reply(200, mockAcceptBananoPayment)
 
       const paymentSession = createPaymentSession(sessionConfig)
 

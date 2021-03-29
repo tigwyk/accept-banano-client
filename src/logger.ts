@@ -7,7 +7,7 @@ const createLogger = () => {
 
   const log = (namespace: string, ...args: unknown[]) => {
     if (enabled) {
-      console.log(`[AcceptNano-${namespace}]`, ...args)
+      console.log(`[AcceptBanano-${namespace}]`, ...args)
     }
   }
 

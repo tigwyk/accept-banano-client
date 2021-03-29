@@ -1,12 +1,12 @@
 import { el, setChildren } from 'redom'
 import Big from 'big.js'
 import QRCode from 'qrcode'
-import { AcceptNanoPayment } from '../../types'
+import { AcceptBananoPayment } from '../../types'
 import { sharedStyles } from '../style'
 
 const multNANO = Big('1000000000000000000000000000000')
 
-const createAccountElements = (account: AcceptNanoPayment['account']) => {
+const createAccountElements = (account: AcceptBananoPayment['account']) => {
   const accountHeader = el(
     'h5',
     { style: sharedStyles.infoHeader },
@@ -18,19 +18,19 @@ const createAccountElements = (account: AcceptNanoPayment['account']) => {
   return { accountHeader, accountText } as const
 }
 
-const createAmountElements = (amount: AcceptNanoPayment['amount']) => {
+const createAmountElements = (amount: AcceptBananoPayment['amount']) => {
   const amountHeader = el('h5', { style: sharedStyles.infoHeader }, 'Amount')
   const amountText = el('p', { style: sharedStyles.infoText }, `${amount} NANO`)
   return { amountHeader, amountText } as const
 }
 
-const createPaymentInfo = (payment: AcceptNanoPayment) => {
+const createPaymentInfo = (payment: AcceptBananoPayment) => {
   const { accountHeader, accountText } = createAccountElements(payment.account)
   const { amountHeader, amountText } = createAmountElements(payment.amount)
   return el('div', [accountHeader, accountText, amountHeader, amountText])
 }
 
-const createQRCodeElements = (payment: AcceptNanoPayment) => {
+const createQRCodeElements = (payment: AcceptBananoPayment) => {
   const amount_raw = Big(payment.amount)
     .times(multNANO)
     .toFixed()
@@ -60,7 +60,7 @@ const createQRCodeElements = (payment: AcceptNanoPayment) => {
   return { qrText, qrCanvas, qrContainer } as const
 }
 
-export const createPaymentScene = (payment: AcceptNanoPayment) =>
+export const createPaymentScene = (payment: AcceptBananoPayment) =>
   new Promise<HTMLDivElement>(resolve => {
     const paymentInfo = createPaymentInfo(payment)
     const { qrText, qrCanvas, qrContainer } = createQRCodeElements(payment)
