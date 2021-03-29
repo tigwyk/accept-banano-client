@@ -71,11 +71,17 @@ type PaymentState =
     }
   | {
       value: 'verification'
-      context: PaymentContext & { payment: AcceptBananoPayment; error: undefined }
+      context: PaymentContext & {
+        payment: AcceptBananoPayment
+        error: undefined
+      }
     }
   | {
       value: 'success'
-      context: PaymentContext & { payment: AcceptBananoPayment; error: undefined }
+      context: PaymentContext & {
+        payment: AcceptBananoPayment
+        error: undefined
+      }
     }
   | {
       value: 'failure'
