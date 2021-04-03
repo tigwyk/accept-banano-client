@@ -8,7 +8,7 @@ export type PaymentError =
 
 export type NanoAccount = string
 export type AcceptBananoPaymentToken = string
-export type AcceptBananoCurrency = 'NANO' | 'USD'
+export type AcceptBananoCurrency = 'BANANO' | 'USD'
 
 export type CreateAcceptBananoPaymentParams = {
   amount: StringifiedNumber

@@ -131,4 +131,4 @@ session.verifyPayment({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' })
 
 - Me
 
-Please send a PR to list your site if _accept-banano_ is helping you to receive NANO payments.
+Please send a PR to list your site if _accept-banano_ is helping you to receive BANANO payments.

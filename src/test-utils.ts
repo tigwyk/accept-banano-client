@@ -4,10 +4,10 @@ export const mockAPIHost = 'accept-nano-demo.put.io'
 
 export const mockAcceptBananoPayment: AcceptBananoPayment = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
-  account: 'nano_3c9pkkgdy5n8qkkrzj96ncjnpcbuj6ux3177wawn1wu5ynoejquumbffdxny',
+  account: 'ban_3c9pkkgdy5n8qkkrzj96ncjnpcbuj6ux3177wawn1wu5ynoejquumbffdxny',
   amount: '0.000001',
   amountInCurrency: '0.000001',
-  currency: 'NANO',
+  currency: 'BANANO',
   balance: '0',
   subPayments: {},
   remainingSeconds: 14399,

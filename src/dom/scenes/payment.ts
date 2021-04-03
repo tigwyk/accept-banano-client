@@ -4,7 +4,7 @@ import QRCode from 'qrcode'
 import { AcceptBananoPayment } from '../../types'
 import { sharedStyles } from '../style'
 
-const multNANO = Big('1000000000000000000000000000000')
+const multBANANO = Big('1000000000000000000000000000000')
 
 const createAccountElements = (account: AcceptBananoPayment['account']) => {
   const accountHeader = el(
@@ -20,7 +20,7 @@ const createAccountElements = (account: AcceptBananoPayment['account']) => {
 
 const createAmountElements = (amount: AcceptBananoPayment['amount']) => {
   const amountHeader = el('h5', { style: sharedStyles.infoHeader }, 'Amount')
-  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} NANO`)
+  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} BANANO`)
   return { amountHeader, amountText } as const
 }
 
@@ -32,11 +32,11 @@ const createPaymentInfo = (payment: AcceptBananoPayment) => {
 
 const createQRCodeElements = (payment: AcceptBananoPayment) => {
   const amount_raw = Big(payment.amount)
-    .times(multNANO)
+    .times(multBANANO)
     .toFixed()
     .toString()
 
-  const qrText = `nano:${payment.account}?amount=${amount_raw}`
+  const qrText = `ban:${payment.account}?amount=${amount_raw}`
 
   const qrCanvas = el('canvas', {
     style: `
