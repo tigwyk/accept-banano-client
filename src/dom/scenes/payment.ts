@@ -20,7 +20,11 @@ const createAccountElements = (account: AcceptBananoPayment['account']) => {
 
 const createAmountElements = (amount: AcceptBananoPayment['amount']) => {
   const amountHeader = el('h5', { style: sharedStyles.infoHeader }, 'Amount')
-  const amountText = el('p', { style: sharedStyles.infoText }, `${amount} BANANO`)
+  const amountText = el(
+    'p',
+    { style: sharedStyles.infoText },
+    `${amount} BANANO`
+    )
   return { amountHeader, amountText } as const
 }
 
