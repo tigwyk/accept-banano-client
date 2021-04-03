@@ -4,7 +4,7 @@ import QRCode from 'qrcode'
 import { AcceptBananoPayment } from '../../types'
 import { sharedStyles } from '../style'
 
-const multBANANO = Big('1000000000000000000000000000000')
+const multBANANO = Big('100000000000000000000000000000')
 
 const createAccountElements = (account: AcceptBananoPayment['account']) => {
   const accountHeader = el(
