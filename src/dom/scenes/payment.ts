@@ -23,8 +23,8 @@ const createAmountElements = (amount: AcceptBananoPayment['amount']) => {
   const amountText = el(
     'p',
     { style: sharedStyles.infoText },
-    `${amount} BANANO`
-    )
+    `${amount} BANANO`,
+  )
   return { amountHeader, amountText } as const
 }
 
